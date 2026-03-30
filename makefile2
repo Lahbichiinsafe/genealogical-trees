@@ -1,0 +1,16 @@
+CC=gcc
+CFLAGS=-std=c11 -Wpedantic -Wall -Wextra
+LDLIBS=-lm
+RM=rm -f
+OBJ=testgenea.o identite.o genea.o
+EXE=testgenea
+$(EXE):$(OBJ)
+		$(CC) $(CFLAGS) $(OBJ) -o $(EXE) $(LDLIBS)
+testgenea.o:testgenea.c identite.h genea.h
+		$(CC) $(CFLAGS) -c testgenea.c
+identite.o: identite.c identite.h
+		$(CC) $(CFLAGS) -c identite.c
+genea.o: genea.c genea.h
+		$(CC) $(CFLAGS) -c genea.c		
+clean:
+		$(RM) $(OBJ) $(EXE)
